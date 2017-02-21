@@ -44,11 +44,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnConsulta = new javax.swing.JButton();
         btnMonitoreo = new javax.swing.JButton();
-        btnRegistrarTags = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -61,7 +60,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        Jpanel2.setBackground(new java.awt.Color(204, 204, 204));
+        Jpanel2.setBackground(new java.awt.Color(204, 204, 0));
 
         btnRegistrar.setText("Registrar Usuario");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,33 +78,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         btnMonitoreo.setText("Monitoreo");
 
-        btnRegistrarTags.setText("Registrar Tags");
-        btnRegistrarTags.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarTagsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout Jpanel2Layout = new javax.swing.GroupLayout(Jpanel2);
         Jpanel2.setLayout(Jpanel2Layout);
         Jpanel2Layout.setHorizontalGroup(
             Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jpanel2Layout.createSequentialGroup()
                 .addContainerGap(137, Short.MAX_VALUE)
-                .addGroup(Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistrarTags, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                        .addComponent(btnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMonitoreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(btnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMonitoreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
         Jpanel2Layout.setVerticalGroup(
             Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Jpanel2Layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
-                .addComponent(btnRegistrarTags, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(255, Short.MAX_VALUE)
                 .addComponent(btnRegistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsulta)
@@ -155,11 +143,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTagsActionPerformed
-        // TODO add your handling code here:
-        GUITags.setVisible(true);
-    }//GEN-LAST:event_btnRegistrarTagsActionPerformed
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         GUIRegistroUsuario.setVisible(true);
@@ -180,7 +163,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnMonitoreo;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegistrarTags;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

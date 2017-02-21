@@ -72,7 +72,7 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="0" type="rgb"/>
+              <Color blue="ff" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
 
@@ -92,7 +92,7 @@
         <Container class="javax.swing.JPanel" name="Jpanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="0" green="cc" red="cc" type="rgb"/>
             </Property>
           </Properties>
 
@@ -101,13 +101,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="137" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnRegistrarTags" min="-2" pref="149" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnRegistrar" pref="149" max="32767" attributes="0"/>
-                              <Component id="btnConsulta" max="32767" attributes="0"/>
-                              <Component id="btnMonitoreo" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnRegistrar" pref="149" max="32767" attributes="0"/>
+                          <Component id="btnConsulta" max="32767" attributes="0"/>
+                          <Component id="btnMonitoreo" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -116,9 +113,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="236" max="32767" attributes="0"/>
-                      <Component id="btnRegistrarTags" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace pref="255" max="32767" attributes="0"/>
                       <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnConsulta" min="-2" max="-2" attributes="0"/>
@@ -150,14 +145,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Monitoreo"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnRegistrarTags">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Tags"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarTagsActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
