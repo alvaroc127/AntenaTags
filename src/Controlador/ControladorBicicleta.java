@@ -53,4 +53,19 @@ public class ControladorBicicleta {
     return bicibd.consultarBicicleta(Numero_Ch);
     }
     
+    
+    public Bicicleta searchBici(String ID){
+     return bicibd.consultarBicicleta(ID);
+    }
+    
+    
+    public long searchCed(String ID){
+    return bicibd.queryCedul(ID);
+    }
+    
+    public Bicicleta getBici(){
+    return bici;
+    }
+    
+    
 }

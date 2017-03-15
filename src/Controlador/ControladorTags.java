@@ -23,7 +23,7 @@ public class ControladorTags {
     private TagsBD tagbd;
     private ArrayList<Negocio.TagsNeg> Tags;
     private Negocio.TagsNeg tag;
-    private Negocio.TablaEscaneados tab;
+    
     
     
     public void ControladorTags(){
@@ -32,29 +32,23 @@ public class ControladorTags {
         tag=new TagsNeg();
     }
     
-    public String buscarTag(){
-        String out=null;
+    public void buscarTag(){
         try{
             if(readAlien == null){
             readAlien = new Negocio.ReaderAlien();
             }
-        out=readAlien.ListenerTags();
+        readAlien.clearTags();
+        readAlien.ListenerTags();
+        Tags=readAlien.getListTags();
         }catch(NullPointerException EX){
         EX.printStackTrace();
         }catch(Exception ex){
         ex.printStackTrace();
         }
-        return out;
     }
     
     
-    public void cargarTabs(){
-    if(tab==null){
-    tab=new TablaEscaneados(Tags);
-    }else{
-        tab.IniciarTabla(Tags);
-        }
-    }
+    
     
     
     public void loadTags(String id, int estado){
@@ -70,12 +64,23 @@ public class ControladorTags {
         tagbd.InsertaTag(tag);
     }
     
-    public TablaEscaneados getTabla(){
-    return tab;
-    }
-    
    
     
+    
+    public void insertarTags(){
+        for(int i=0;i<Tags.size();i++){
+            insertarTag();
+        }
+    }
+   
+    
+    public ArrayList<TagsNeg> getTags(){
+    return Tags;
+    }
+    
   
+    public void setBooleanStop(boolean stop){
+    readAlien.setStop(stop);
+    }
     
 }

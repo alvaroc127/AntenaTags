@@ -14,24 +14,27 @@ import javax.swing.table.AbstractTableModel;
  * @author PERSONAL
  */
 public class TablaEscaneados extends AbstractTableModel {
-    private ArrayList<TagsNeg> Tags=new ArrayList();
+    private ArrayList<Actividad> actividades=new ArrayList();
     private ArrayList<String> titulos=new ArrayList();
     
 
-    public TablaEscaneados(ArrayList<TagsNeg> tags){
-        Tags=tags;
+    public TablaEscaneados(ArrayList<Actividad> acti){
+        actividades=acti;
         titulos.add("ID");
-        titulos.add("estado");
+        titulos.add("numero Chasis");
+        titulos.add("Hora");
+        titulos.add("Fecha");
+        titulos.add("Cedula");
     }
     
-    public void IniciarTabla(ArrayList<TagsNeg> tags){
-        Tags=tags;
+    public void IniciarTabla(ArrayList<Actividad> actividades){
+        this.actividades=actividades;
     }
             
     
     @Override
     public int getRowCount() {
-        return Tags.size();
+        return actividades.size();
     }
 
     @Override
@@ -41,17 +44,14 @@ public class TablaEscaneados extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        TagsNeg tag=null;
-        tag=Tags.get(rowIndex);
-        String estad;
-        if(tag.getEstado()== 1){
-                estad="no Registrado";
-            }else{
-                estad="Registrado";
-            }
-               switch(columnIndex){
-            case 0: return tag.getTag().getTagID();
-            case 1: return estad;
+        Actividad acti=null;
+        acti=actividades.get(rowIndex);
+       switch(columnIndex){
+            case 0: return acti.getId();
+            case 1: return acti.getNumero_Chasis();
+            case 2: return acti.getHora().toString();
+            case 3: return acti.getFecha().toString();
+            case 4: return acti.getCedula();
             default: return null;
         }
     }

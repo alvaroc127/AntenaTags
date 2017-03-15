@@ -5,6 +5,8 @@
  */
 package Negocio;
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 
 /**
  *
@@ -13,6 +15,7 @@ import java.sql.Date;
 public class Actividad {
     
     Date fecha;
+    Time hora;
     int Numero_Chasis;
     String Id;
     long cedula;
@@ -20,13 +23,24 @@ public class Actividad {
     public Actividad() {
     }
 
-    public Actividad(Date fecha, int Numero_Chasis, String Id, long cedula) {
+    public Actividad(Date fecha,Time hora,int Numero_Chasis, String Id, long cedula) {
         this.fecha = fecha;
+        this.hora=hora;
         this.Numero_Chasis = Numero_Chasis;
         this.Id = Id;
         this.cedula = cedula;
     }
 
+    
+     public Actividad(int Numero_Chasis, String Id, long cedula) {
+        this.Numero_Chasis = Numero_Chasis;
+        this.Id = Id;
+        this.cedula = cedula;
+        loadDate();
+        loadTime();
+    }
+     
+     
     public Date getFecha() {
         return fecha;
     }
@@ -59,6 +73,40 @@ public class Actividad {
         this.cedula = cedula;
     }
 
+    public Time getHora() {
+        return hora;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+
+    
+    public void currentDate(){
+        loadDate();
+        loadTime();
+    }
+    
+    public void loadDate(){
+        java.util.Date dat=new java.util.Date();
+        if(fecha==null){
+            fecha=new Date(dat.getTime());
+        }else{
+        fecha.setTime(dat.getTime());
+        }
+    }
+    
+    
+    public void loadTime(){
+    LocalTime locTime= LocalTime.now();
+    if(hora== null){
+        hora=new Time(locTime.getHour(), locTime.getMinute(), locTime.getSecond());
+        }else{
+            hora.setHours(locTime.getHour());
+            hora.setMinutes(locTime.getMinute());
+            hora.setSeconds(locTime.getSecond());
+        }
+    }
    
 
  

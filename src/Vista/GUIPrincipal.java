@@ -16,17 +16,19 @@ public class GUIPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form GUIPrincipal
      */
-    private GUIRegistroTags GUITags;
+    private GUIActividades GUIActividad;
     private GUIRegistroCiclista GUIRegistroUsuario;
     private GuiConsultar guiConsultar;
+    private GUIConecion guiConec;
     
     
    
     public GUIPrincipal() {
         initComponents();
-        GUITags = new GUIRegistroTags();
+        GUIActividad = new GUIActividades();
         GUIRegistroUsuario= new GUIRegistroCiclista();
         guiConsultar = new GuiConsultar();
+        guiConec=new GUIConecion();
     }
 
     /**
@@ -44,6 +46,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnConsulta = new javax.swing.JButton();
         btnMonitoreo = new javax.swing.JButton();
+        btnConfig = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +80,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
 
         btnMonitoreo.setText("Monitoreo");
+        btnMonitoreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonitoreoActionPerformed(evt);
+            }
+        });
+
+        btnConfig.setText("Config Conecion");
+        btnConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfigActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Jpanel2Layout = new javax.swing.GroupLayout(Jpanel2);
         Jpanel2.setLayout(Jpanel2Layout);
@@ -87,13 +102,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 .addGroup(Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(btnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMonitoreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnMonitoreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
         Jpanel2Layout.setVerticalGroup(
             Jpanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Jpanel2Layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addContainerGap(226, Short.MAX_VALUE)
+                .addComponent(btnConfig)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsulta)
@@ -153,6 +171,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         guiConsultar.setVisible(true);
     }//GEN-LAST:event_btnConsultaActionPerformed
 
+    private void btnMonitoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitoreoActionPerformed
+        // TODO add your handling code here:
+        GUIActividad.setVisible(true);
+    }//GEN-LAST:event_btnMonitoreoActionPerformed
+
+    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
+        // TODO add your handling code here:
+        guiConec.setVisible(true);
+    }//GEN-LAST:event_btnConfigActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -160,6 +188,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Jpanel2;
+    private javax.swing.JButton btnConfig;
     private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnMonitoreo;
     private javax.swing.JButton btnRegistrar;

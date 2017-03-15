@@ -6,6 +6,7 @@
 package Controlador;
 
 import Negocio.Actividad;
+import Negocio.TablaEscaneados;
 import Servicios.ActividaDB;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,11 +19,14 @@ import java.util.ArrayList;
  */
 public class ControladorActividades {
     
-    Negocio.Actividad activi;
-    Servicios.ActividaDB actividadBD;
+    private Negocio.Actividad activi;
+    private Servicios.ActividaDB actividadBD;
     java.sql.Date fech;
     java.util.Date ulfec;
-    ArrayList<Actividad> actividades;
+    private ArrayList<Actividad> actividades;
+    private Controlador.ControladorBicicleta conBici;
+    private TablaEscaneados tabEscan;
+    
     
 
     public ControladorActividades() {
@@ -30,6 +34,7 @@ public class ControladorActividades {
         actividadBD= new ActividaDB();
         ulfec=new java.util.Date();
         actividades=new ArrayList<>();
+        conBici=new ControladorBicicleta();
     }
     
     
@@ -61,6 +66,26 @@ public class ControladorActividades {
         this.actividades = actividades;
     }
     
+    public void creatActivity(int numChasis,String ID, int cedula){
+        Actividad acti=new Actividad(numChasis, ID, cedula);
+        actividades.add(acti);
+    }
+    
+    public void clearActividads(){
+    actividades.clear();
+    }
+    
+    public void initTab(){
+    if(tabEscan== null){
+        tabEscan=new TablaEscaneados(actividades);
+    }else{
+        tabEscan.IniciarTabla(actividades);
+        }
+    }
+    
+    public TablaEscaneados getTab(){
+    return tabEscan;
+    }
     
     
 }

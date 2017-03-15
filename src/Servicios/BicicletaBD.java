@@ -21,7 +21,9 @@ import java.sql.SQLException;
 public class BicicletaBD {
     
     private String InsertaBicicleta="INSERT INTO public.\"Cicla\" (\"Marca\", \"Numero_Chasis\", \"Color\", \"Id\", cedula) VALUES (?, ?, ?, ?, ?);";	
-    private String consultaBicileta="SELECT *  FROM public.\"Cicla\";";
+    private String consultaBicileta1="SELECT *  FROM public.\"Cicla\" Where Id = ?;";
+    private String consultaBicileta2="SELECT cedula  FROM public.\"Cicla\" Where Id = ?;";
+    private String consultaBicileta= "SELECT *  FROM public.\"Cicla\" Where \"Numero_Chasis\" = ?;";
 
     public BicicletaBD() {
     }
@@ -58,7 +60,7 @@ public class BicicletaBD {
     Negocio.TagsNeg tagPr=null;
     try{
     con= ConectionBD.getConecxion();
-    stat=con.prepareStatement(consultaBicileta);
+    stat=con.prepareStatement(consultaBicileta1);
     int index=1;
     stat.setInt(index++,num_chasis);
     resul=stat.executeQuery();
@@ -77,6 +79,59 @@ public class BicicletaBD {
         }
     }
     
+    
+    public Bicicleta consultarBicicleta(String TagId){
+    Bicicleta bici = new Bicicleta();
+    Connection con=null;
+    PreparedStatement stat=null;
+    ResultSet  resul=null;
+    Negocio.TagsNeg tagPr=null;
+    try{
+    con= ConectionBD.getConecxion();
+    stat=con.prepareStatement(consultaBicileta);
+    int index=1;
+    stat.setString(index++,TagId);
+    resul=stat.executeQuery();
+    while(resul.next()){
+       bici.setCodChasis(resul.getInt("Numero_Chasis"));
+       bici.setColor(resul.getString("color"));
+       bici.setMarca(resul.getString("marca"));
+        }
+    }catch(SQLException exp){
+    exp.printStackTrace();
+    }finally{
+    ConectionBD.close(con);
+    ConectionBD.close(stat);
+    ConectionBD.close(resul);
+    return bici;
+        }
+    }
+    
+    
+    public long queryCedul(String TagId){
+    long cedu=0;
+    Connection con=null;
+    PreparedStatement stat=null;
+    ResultSet  resul=null;
+    Negocio.TagsNeg tagPr=null;
+    try{
+    con= ConectionBD.getConecxion();
+    stat=con.prepareStatement(consultaBicileta);
+    int index=1;
+    stat.setString(index++,TagId);
+    resul=stat.executeQuery();
+    while(resul.next()){
+       cedu= resul.getLong("cedula");
+        }
+    }catch(SQLException exp){
+    exp.printStackTrace();
+    }finally{
+    ConectionBD.close(con);
+    ConectionBD.close(stat);
+    ConectionBD.close(resul);
+    return cedu;
+        }
+    }
     
     
 }

@@ -5,24 +5,32 @@
  */
 package Vista;
 
+import Controlador.ControladorActividades;
+import Controlador.ControladorBicicleta;
 import Controlador.ControladorTags;
+import Negocio.Bicicleta;
 
 /**
  *
  * @author PERSONAL
  */
-public class GUIRegistroTags extends javax.swing.JFrame {
+public class GUIActividades extends javax.swing.JFrame {
 
     
     private ControladorTags conTags;
+    private Controlador.ControladorActividades conActivi;
+    private Controlador.ControladorBicicleta conBicicleta;
     /**
      * Creates new form GUIRegistroTags
      */
-    public GUIRegistroTags() {
+    public GUIActividades() {
         initComponents();
         conTags=new ControladorTags();
+        conActivi=new ControladorActividades();
+        conBicicleta=new ControladorBicicleta();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        jPanelTabla.setVisible(false);
+       btnStopScan.setEnabled(false);
     }
     
 
@@ -113,9 +121,9 @@ public class GUIRegistroTags extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnStopScan)
                     .addComponent(btnBuscarTags))
@@ -127,14 +135,29 @@ public class GUIRegistroTags extends javax.swing.JFrame {
 
     private void btnStopScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopScanActionPerformed
         // TODO add your handling code here:
+        conTags.setBooleanStop(true);
+        if(conTags.getTags()!=null){
         jPanelTabla.setVisible(true);
-        conTags.cargarTabs();
-        tbEncontrados.setModel(conTags.getTabla());
+        tbEncontrados.setModel(conActivi.getTab());
+        }
     }//GEN-LAST:event_btnStopScanActionPerformed
 
     private void btnBuscarTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTagsActionPerformed
         // TODO add your handling code here
-      
+        conTags.buscarTag();
+        btnBuscarTags.setEnabled(false);
+        Bicicleta bici=null;
+        if(conTags.getTags()!=null){
+            for(int i=0; i< conTags.getTags().size();i++){
+                bici=conBicicleta.searchBici(conTags.getTags().get(i).getTag().getTagID());
+                long cedu=conBicicleta.searchCed(conTags.getTags().get(i).getTag().getTagID());
+            if(bici!=null){
+                conActivi.clearActividads();
+                conActivi.creatActivity(bici.getCodChasis(),conTags.getTags().get(i).getTag().getTagID(),(int)cedu);
+                conActivi.initTab();
+                }
+            }
+        }
     }//GEN-LAST:event_btnBuscarTagsActionPerformed
 
     /**
