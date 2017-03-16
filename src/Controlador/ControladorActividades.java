@@ -38,14 +38,13 @@ public class ControladorActividades {
     }
     
     
-    public ArrayList<Negocio.Actividad> consultarActividades(String fecha){
-        convertDate(fecha);
-        actividades = actividadBD.consultaActividad(fechSQL());
-        return actividadBD.consultaActividad(fechSQL());
+    public ArrayList<Negocio.Actividad> consultarActividades(java.sql.Date fecha,java.sql.Time HoraIni,java.sql.Time horaFin){
+        actividades = actividadBD.consultaActividad(fecha,HoraIni,horaFin);
+        return actividadBD.consultaActividad(fecha,HoraIni,horaFin);
     }
     
     public void convertDate(String fech) {
-        SimpleDateFormat dat= new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+        SimpleDateFormat dat= new SimpleDateFormat("dd/mm/yyyy");
         try{
         ulfec = dat.parse(fech);
         }catch(ParseException pa){
@@ -53,8 +52,8 @@ public class ControladorActividades {
         }
     }
     
-   public java.sql.Timestamp fechSQL(){
-   java.sql.Timestamp fech=new java.sql.Timestamp(ulfec.getTime());
+   public java.sql.Date fechSQL(){
+   java.sql.Date fech=new java.sql.Date(ulfec.getTime());
    return fech;
    }
 
@@ -87,5 +86,12 @@ public class ControladorActividades {
     return tabEscan;
     }
     
+    
+    public void insertarActividades(){
+    for(int i=0; i<actividades.size();i++){
+        if(actividades.get(i).getCedula()>0)
+    actividadBD.insertarActividad(actividades.get(i));
+        }
+    }
     
 }

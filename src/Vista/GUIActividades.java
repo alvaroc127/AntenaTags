@@ -14,12 +14,13 @@ import Negocio.Bicicleta;
  *
  * @author PERSONAL
  */
-public class GUIActividades extends javax.swing.JFrame {
+public class GUIActividades extends javax.swing.JFrame implements Runnable{
 
     
     private ControladorTags conTags;
     private Controlador.ControladorActividades conActivi;
     private Controlador.ControladorBicicleta conBicicleta;
+    private boolean ini=true;
     /**
      * Creates new form GUIRegistroTags
      */
@@ -49,6 +50,7 @@ public class GUIActividades extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbEncontrados = new javax.swing.JTable();
         jMensaje = new javax.swing.JLabel();
+        btnSalida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,50 +86,63 @@ public class GUIActividades extends javax.swing.JFrame {
         jPanelTablaLayout.setHorizontalGroup(
             jPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTablaLayout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanelTablaLayout.setVerticalGroup(
             jPanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTablaLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+            .addGroup(jPanelTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMensaje.setText("Debe detener la busquda para ver los tags encontrados");
+
+        btnSalida.setText("Salida");
+        btnSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBuscarTags, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnStopScan, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBuscarTags, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(btnStopScan, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSalida)
+                        .addGap(172, 172, 172))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addGap(292, 292, 292)
+                .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnStopScan)
                     .addComponent(btnBuscarTags))
-                .addGap(51, 51, 51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSalida)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -135,31 +150,52 @@ public class GUIActividades extends javax.swing.JFrame {
 
     private void btnStopScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopScanActionPerformed
         // TODO add your handling code here:
-        conTags.setBooleanStop(true);
-        if(conTags.getTags()!=null){
-        jPanelTabla.setVisible(true);
-        tbEncontrados.setModel(conActivi.getTab());
-        }
+               
     }//GEN-LAST:event_btnStopScanActionPerformed
 
     private void btnBuscarTagsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTagsActionPerformed
         // TODO add your handling code here
-        conTags.buscarTag();
         btnBuscarTags.setEnabled(false);
+        if(ini==true){
+        Thread hilo=new Thread(this);
+        hilo.start();
+        ini=false;
+        }
+    }//GEN-LAST:event_btnBuscarTagsActionPerformed
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_btnSalidaActionPerformed
+
+    public void prosecMesagge(){
+    do{
+    conTags.buscarTag();
         Bicicleta bici=null;
-        if(conTags.getTags()!=null){
+        long cedu=0;
+           conTags.loadListTag();
+        if(!conTags.getTags().isEmpty()){
             for(int i=0; i< conTags.getTags().size();i++){
                 bici=conBicicleta.searchBici(conTags.getTags().get(i).getTag().getTagID());
-                long cedu=conBicicleta.searchCed(conTags.getTags().get(i).getTag().getTagID());
+                cedu=conBicicleta.searchCed(conTags.getTags().get(i).getTag().getTagID());
             if(bici!=null){
                 conActivi.clearActividads();
                 conActivi.creatActivity(bici.getCodChasis(),conTags.getTags().get(i).getTag().getTagID(),(int)cedu);
                 conActivi.initTab();
+                jPanelTabla.setVisible(true);
+                tbEncontrados.setModel(conActivi.getTab());
                 }
+            conTags.clearTags();
+                }
+               conActivi.insertarActividades();
             }
-        }
-    }//GEN-LAST:event_btnBuscarTagsActionPerformed
-
+        }while(true);
+    }
+    
+    @Override
+    public void run() {
+        prosecMesagge();
+    }
     /**
      * @param args the command line arguments
      */
@@ -167,10 +203,13 @@ public class GUIActividades extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarTags;
+    private javax.swing.JButton btnSalida;
     private javax.swing.JButton btnStopScan;
     private javax.swing.JLabel jMensaje;
     private javax.swing.JPanel jPanelTabla;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbEncontrados;
     // End of variables declaration//GEN-END:variables
+
+    
 }

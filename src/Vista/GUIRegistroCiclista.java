@@ -27,7 +27,8 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
     public GUIRegistroCiclista() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        txtOtro.setVisible(false);
+        txtOtro.setEnabled(false);
+        jlbColor.setVisible(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         loadColor();
         biciCon=new ControladorBicicleta();
@@ -62,6 +63,8 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
         jLabel4 = new javax.swing.JLabel();
         txtIdTag = new javax.swing.JTextField();
         JlMensaje = new javax.swing.JLabel();
+        jlbColor = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +97,14 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
 
         lblColor.setText("Color");
 
+        jcColores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcColoresMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jcColoresMousePressed(evt);
+            }
+        });
         jcColores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcColoresActionPerformed(evt);
@@ -115,6 +126,15 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
 
         jLabel4.setText("Tag Id");
 
+        jlbColor.setText("Escriba el Color");
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,26 +142,34 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNumChasis)
-                    .addComponent(lblMarca)
-                    .addComponent(lblColor)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JlMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                    .addComponent(txtChasis, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                    .addComponent(txtCedula)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcColores, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtOtro, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistros)
-                    .addComponent(txtIdTag))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNumChasis)
+                            .addComponent(lblMarca)
+                            .addComponent(lblColor)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JlMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                .addComponent(txtChasis, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                .addComponent(txtCedula)
+                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcColores, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtOtro, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIdTag))
+                            .addComponent(jlbColor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(73, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistros)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir)
+                        .addGap(154, 154, 154))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +198,9 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblColor)
                     .addComponent(jcColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(jlbColor)
+                .addGap(3, 3, 3)
                 .addComponent(txtOtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -178,9 +208,11 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
                     .addComponent(txtIdTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JlMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnRegistros)
-                .addContainerGap())
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistros)
+                    .addComponent(btnSalir))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -206,6 +238,7 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
         conTag.insertarTag();
         biciCon.guardarBici(txtIdTag.getText(),Integer.parseInt(txtCedula.getText()));
         }
+        clearBoton();
     }//GEN-LAST:event_btnRegistrosActionPerformed
 
     private void txtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyTyped
@@ -228,10 +261,14 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
 
     private void jcColoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcColoresActionPerformed
         // TODO add your handling code here:
+        
+
+        
     }//GEN-LAST:event_jcColoresActionPerformed
 
     private void txtOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtroActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtOtroActionPerformed
 
     private void txtOtroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOtroKeyTyped
@@ -243,7 +280,39 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
         }
     }//GEN-LAST:event_txtOtroKeyTyped
 
+    private void jcColoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcColoresMouseClicked
+        // TODO add your handling code here:
+        if(jcColores.getSelectedItem() == "Otro" ){
+           txtOtro.setEnabled(true);
+            jcColores.setEnabled(false);
+            jlbColor.setVisible(true);
+        }else{
+            txtOtro.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcColoresMouseClicked
+
+    private void jcColoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcColoresMousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jcColoresMousePressed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+ public void clearBoton(){
+ txtNombre.setText("");
+ txtCedula.setText("");
+ txtChasis.setText("");
+ txtCorreo.setText("");
+ txtIdTag.setText("");
+ txtOtro.setText("");
+ txtMarca.setText("");
  
+  
+ 
+ }
   
     
     public void loadColor(){
@@ -263,11 +332,13 @@ public class GUIRegistroCiclista extends javax.swing.JFrame  {
     private javax.swing.ButtonGroup GroupButon;
     private javax.swing.JLabel JlMensaje;
     private javax.swing.JButton btnRegistros;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JComboBox<String> jcColores;
+    private javax.swing.JLabel jlbColor;
     private javax.swing.JLabel lblColor;
     private javax.swing.JLabel lblMarca;
     private javax.swing.JLabel lblNumChasis;

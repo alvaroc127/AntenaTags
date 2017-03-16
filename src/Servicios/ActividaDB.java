@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class ActividaDB {
     
-    private static String consultaActividad="Select * from \"Actividad\" where fecha  BETWEEN CAST (? AS DATE) AND current_date"; 
-    private static String insertarActivdad="INSERT INTO \"Actividad\" (fecha,Id,cedula,) values (?,?,?,?);";
+    private static String consultaActividad="Select * from \"Actividad\" where fecha BETWEEN ?  AND current_date AND hora >  ? AND hora < ?"; 
+    private static String insertarActivdad="INSERT INTO \"Actividad\" (fecha,\"Id\",\"Numero_Chasis\",cedula,hora) values (?,?,?,?,?);";
 
     public ActividaDB() {
     }
@@ -22,7 +22,7 @@ public class ActividaDB {
     
     
     
-    public ArrayList<Negocio.Actividad> consultaActividad(java.sql.Timestamp fecha){
+    public ArrayList<Negocio.Actividad> consultaActividad(java.sql.Date fecha,java.sql.Time horaIni, java.sql.Time horaFin){
     ArrayList<Negocio.Actividad> actividades=new ArrayList<Negocio.Actividad>();
     Connection con=null;
     PreparedStatement stat=null;
@@ -32,8 +32,9 @@ public class ActividaDB {
     con= ConectionBD.getConecxion();
     stat=con.prepareStatement(consultaActividad);
     int index=1;
-    stat.setTimestamp(index++,fecha);
-    //stat.setTimestamp(index++,fecha);
+    stat.setDate(index++,fecha);
+    stat.setTime(index++,horaIni);
+    stat.setTime(index++,horaFin);
     resul=stat.executeQuery();
     while(resul.next()){
        Actividad act=new Actividad();
@@ -53,7 +54,27 @@ public class ActividaDB {
         }
     }
     
-    
+       public void insertarActividad(Actividad activi){
+        Connection con=null;
+        PreparedStatement stat=null;
+        int rows=0;
+        try{
+        con=ConectionBD.getConecxion();
+        stat=con.prepareStatement(insertarActivdad);
+        int index=1;
+        stat.setDate(index++,activi.getFecha());
+        stat.setString(index++,activi.getId());
+        stat.setInt(index++, activi.getNumero_Chasis());
+        stat.setLong(index++,activi.getCedula());
+        stat.setTime(index++,activi.getHora());
+        rows=stat.executeUpdate();
+       }catch(SQLException exp){
+       exp.printStackTrace();
+       }finally{
+        ConectionBD.close(con);
+        ConectionBD.close(stat);
+        }
+    }
     
     
 }

@@ -9,6 +9,8 @@ import Controlador.ControladorActividades;
 import java.text.DateFormat;
 import Negocio.TablaConsulta;
 import Negocio.TablaEscaneados;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author User
@@ -51,6 +53,8 @@ public class GuiConsultar extends javax.swing.JFrame {
         btnFiltros = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbActividades = new javax.swing.JTable();
+        jHoraFin = new javax.swing.JLabel();
+        jcomHorasFin = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +81,7 @@ public class GuiConsultar extends javax.swing.JFrame {
                 .addContainerGap(173, Short.MAX_VALUE))
         );
 
-        jHoraInicio.setText("Hora");
+        jHoraInicio.setText("Hora Inicio");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +110,8 @@ public class GuiConsultar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbActividades);
 
+        jHoraFin.setText("Hora Fin");
+
         javax.swing.GroupLayout jPanelPrinLayout = new javax.swing.GroupLayout(jPanelPrin);
         jPanelPrin.setLayout(jPanelPrinLayout);
         jPanelPrinLayout.setHorizontalGroup(
@@ -113,11 +119,6 @@ public class GuiConsultar extends javax.swing.JFrame {
             .addGroup(jPanelPrinLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPrinLayout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jHoraInicio)
-                            .addComponent(jcomHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(JpanelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelPrinLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -125,21 +126,26 @@ public class GuiConsultar extends javax.swing.JFrame {
                             .addComponent(jlFechaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(JdateFachaBusquda, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnFiltros)))))
+                                .addComponent(btnFiltros)))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jHoraInicio)
+                            .addComponent(jcomHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(5, 5, 5)
                 .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPrinLayout.createSequentialGroup()
+                        .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jcomHorasFin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jHoraFin))
                         .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelPrinLayout.createSequentialGroup()
-                                .addGap(166, 166, 166)
+                                .addGap(148, 148, 148)
                                 .addComponent(btnBuscar))
                             .addGroup(jPanelPrinLayout.createSequentialGroup()
-                                .addGap(70, 70, 70)
+                                .addGap(31, 31, 31)
                                 .addComponent(Jlbhora, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(206, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrinLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(191, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanelPrinLayout.setVerticalGroup(
             jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,11 +154,14 @@ public class GuiConsultar extends javax.swing.JFrame {
                 .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlFechaBus)
                     .addComponent(jHoraInicio)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(jHoraFin))
                 .addGap(2, 2, 2)
                 .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JdateFachaBusquda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcomHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcomHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcomHorasFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Jlbhora, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanelPrinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,10 +191,21 @@ public class GuiConsultar extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        // la hora sirve como un marco para buscar de la hora en adelante 
         DateFormat df= DateFormat.getDateInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm");
+        java.sql.Time var=null;
+        java.sql.Time var1=null;
         if(JdateFachaBusquda.getDate()!=null){
         Jlbhora.setText(df.format(JdateFachaBusquda.getDate())+" "+(String)jcomHoras.getSelectedItem());
-        contActi.consultarActividades(df.format(JdateFachaBusquda.getDate())+" "+(String)jcomHoras.getSelectedItem());
+        contActi.convertDate(df.format(JdateFachaBusquda.getDate()));
+        try{
+         var= new java.sql.Time(sdf.parse((String)jcomHoras.getSelectedItem()).getTime());
+         var1= new java.sql.Time(sdf.parse((String)jcomHorasFin.getSelectedItem()).getTime());
+        }catch(ParseException paex){
+        paex.printStackTrace();
+        }
+        contActi.consultarActividades(contActi.fechSQL(),var,var1);
         loadTabla();
         btnFiltros.setVisible(true);
         }
@@ -199,13 +219,15 @@ public class GuiConsultar extends javax.swing.JFrame {
 
   
 public void loadConbox(){
-String [] Horas={"00:00:00.0","01:00:00.0","02:00:00.0","03:00:00.0","04:00:00.0",
-                "05:00:00.0","06:00:00.0","07:00:00.0","08:00:00.0","09:00:00.0","10:00:00.0","11:00:00.0","12:00:00.0","13:00:00.0",
-                "14:00:00.0","15:00:00.0","16:00:00.0","17:00:00.0","18:00:00.0","19:00:00.0","20:00:00.0","21:00:00.0","22:00:00.0","23:00:00.0","24:00:00.0"} ;
+String [] Horas={"00:00","01:00","02:00","03:00","04:00",
+                "05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00",
+                "14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"} ;
 for(int i =0; i <Horas.length;i++){
        jcomHoras.addItem(Horas[i]);
        }
-
+for(int i =0; i <Horas.length;i++){
+       jcomHorasFin.addItem(Horas[i]);
+       }
 }
 
 public void loadTabla(){
@@ -219,11 +241,13 @@ public void loadTabla(){
     private javax.swing.JPanel JpanelFiltros;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnFiltros;
+    private javax.swing.JLabel jHoraFin;
     private javax.swing.JLabel jHoraInicio;
     private javax.swing.JPanel jPanelPrin;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jbFiltro;
     private javax.swing.JComboBox<String> jcomHoras;
+    private javax.swing.JComboBox<String> jcomHorasFin;
     private javax.swing.JLabel jlFechaBus;
     private javax.swing.JTable tbActividades;
     // End of variables declaration//GEN-END:variables

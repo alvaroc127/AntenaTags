@@ -38,8 +38,11 @@ public class ControladorTags {
             readAlien = new Negocio.ReaderAlien();
             }
         readAlien.clearTags();
-        readAlien.ListenerTags();
-        Tags=readAlien.getListTags();
+        // iniciar el hilo 
+        if(readAlien.isAlive()!=true){
+            System.out.println("se lanzo");
+        readAlien.start();
+        }
         }catch(NullPointerException EX){
         EX.printStackTrace();
         }catch(Exception ex){
@@ -48,7 +51,9 @@ public class ControladorTags {
     }
     
     
-    
+    public void loadListTag(){
+    Tags=readAlien.getListTags();
+    }
     
     
     public void loadTags(String id, int estado){
@@ -83,4 +88,8 @@ public class ControladorTags {
     readAlien.setStop(stop);
     }
     
+    
+    public void clearTags(){
+    Tags.clear();
+    }
 }

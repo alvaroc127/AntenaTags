@@ -21,8 +21,8 @@ import java.sql.SQLException;
 public class BicicletaBD {
     
     private String InsertaBicicleta="INSERT INTO public.\"Cicla\" (\"Marca\", \"Numero_Chasis\", \"Color\", \"Id\", cedula) VALUES (?, ?, ?, ?, ?);";	
-    private String consultaBicileta1="SELECT *  FROM public.\"Cicla\" Where Id = ?;";
-    private String consultaBicileta2="SELECT cedula  FROM public.\"Cicla\" Where Id = ?;";
+    private String consultaBicileta1="SELECT *  FROM public.\"Cicla\" Where \"Id\" = ?";
+    private String consultaBicileta2="SELECT cedula  FROM public.\"Cicla\" Where \"Id\" = ?";
     private String consultaBicileta= "SELECT *  FROM public.\"Cicla\" Where \"Numero_Chasis\" = ?;";
 
     public BicicletaBD() {
@@ -60,7 +60,7 @@ public class BicicletaBD {
     Negocio.TagsNeg tagPr=null;
     try{
     con= ConectionBD.getConecxion();
-    stat=con.prepareStatement(consultaBicileta1);
+    stat=con.prepareStatement(consultaBicileta);
     int index=1;
     stat.setInt(index++,num_chasis);
     resul=stat.executeQuery();
@@ -88,7 +88,7 @@ public class BicicletaBD {
     Negocio.TagsNeg tagPr=null;
     try{
     con= ConectionBD.getConecxion();
-    stat=con.prepareStatement(consultaBicileta);
+    stat=con.prepareStatement(consultaBicileta1);
     int index=1;
     stat.setString(index++,TagId);
     resul=stat.executeQuery();
@@ -116,7 +116,7 @@ public class BicicletaBD {
     Negocio.TagsNeg tagPr=null;
     try{
     con= ConectionBD.getConecxion();
-    stat=con.prepareStatement(consultaBicileta);
+    stat=con.prepareStatement(consultaBicileta2);
     int index=1;
     stat.setString(index++,TagId);
     resul=stat.executeQuery();
